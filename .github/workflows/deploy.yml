@@ -1,7 +1,7 @@
 name: Deploy code
 on: [push, workflow_dispatch]
 jobs:
-  deploy-code:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: init-env
@@ -14,7 +14,8 @@ jobs:
         run: npm ci
       - name: lint code
         run: npm run lint
-  lint-code:
+  lint:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: init-env
@@ -27,7 +28,8 @@ jobs:
         run: npm ci
       - name: test
         run: npm test
-  build-code:
+  deploy:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: init-env
