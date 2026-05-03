@@ -1,0 +1,11 @@
+name: Issue workflow
+on: 
+  issues:
+    types: [opened, edited, milestoned]
+jobs:
+  deploy-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: issue happened
+        run:  echo "${{ toJSON(github).event }}"
+

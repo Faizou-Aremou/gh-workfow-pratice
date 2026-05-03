@@ -1,0 +1,32 @@
+name: Deploy code
+on: [push, workflow_dispatch]
+jobs:
+  deploy-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: init-env
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+      - name: lint code
+        run: npm run lint
+  lint-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: init-env
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+      - name: lint code
+        run: npm run lint
+      - name: test
+        run: npm test
+  build-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build
+        run: npm run build
