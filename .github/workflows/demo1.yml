@@ -10,7 +10,7 @@ on:
           - main
           - 'feat-*'
     paths-ignore:
-          - 'github/workflows/*'
+          - '.github/workflows/*'
   workflow_dispatch: 
 jobs:
   deploy:
